@@ -1,0 +1,356 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Jason_Chiarulli_Ch_13_HW</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-05"><meta name="DC.source" content="Jason_Chiarulli_Ch_13_HW.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Homework #7</a></li><li><a href="#2">Problem 13.2</a></li><li><a href="#3">Problem 13.7</a></li><li><a href="#4">Problem 13.13</a></li><li><a href="#5">Problem 13.17</a></li></ul></div><h2 id="1">Homework #7</h2><p>Jason Chiarulli</p><p>ENGR 108</p><p>Matlab for Engineers, Third Edition</p><pre class="codeinput">clear,clc
+</pre><h2 id="2">Problem 13.2</h2><pre class="codeinput"><span class="comment">% Defines a vector from measured volume data in m^3</span>
+Volume = 1:6;
+<span class="comment">% Defines a vector from measured pressure data in kPa at 300K</span>
+Pressure = [2494 1247 831 623 499 416];
+<span class="comment">% Defines a vector with volume measurements every 0.2m^3</span>
+New_Volume = 1:0.2:6;
+<span class="comment">% Estimates new pressure measurements for the new volume</span>
+<span class="comment">% measurements with linear interpolation</span>
+New_Pressure = interp1(Volume,Pressure,New_Volume);
+<span class="comment">% Groups the new pressure and new volume values into a table</span>
+table =[New_Volume; New_Pressure];
+<span class="comment">% Displays the title of the table</span>
+disp(<span class="string">'Expanded Volume-Pressure Table'</span>)
+<span class="comment">% Displays the column headers of the table</span>
+disp(<span class="string">'Volume, m^3   Pressure, kPa, at 300K'</span>)
+<span class="comment">% Displays and formats the new pressure and new volume values</span>
+fprintf(<span class="string">'%7.2f %20.2f \n'</span>, table)
+
+<span class="comment">% Plots the volume and pressure data as circles and plots the</span>
+<span class="comment">% new volume and new pressure data as a solid line</span>
+plot(Volume,Pressure,<span class="string">'o'</span>,New_Volume,New_Pressure)
+<span class="comment">% Creates a title</span>
+title({<span class="string">'Gas Volume and Pressure in a'</span>, <span class="string">'Piston-Cylinder Device'</span>})
+<span class="comment">% Creates a x-axis label</span>
+xlabel(<span class="string">'Volume, m^3'</span>)
+<span class="comment">% Creates a y-axis label</span>
+ylabel(<span class="string">'Pressure, kPa, at 300K'</span>)
+<span class="comment">% Creates a background grid</span>
+grid <span class="string">on</span>
+<span class="comment">% Creates a legend</span>
+legend(<span class="string">'Measured Data'</span>,<span class="string">'Interpolated Values'</span>)
+</pre><pre class="codeoutput">Expanded Volume-Pressure Table
+Volume, m^3   Pressure, kPa, at 300K
+   1.00              2494.00 
+   1.20              2244.60 
+   1.40              1995.20 
+   1.60              1745.80 
+   1.80              1496.40 
+   2.00              1247.00 
+   2.20              1163.80 
+   2.40              1080.60 
+   2.60               997.40 
+   2.80               914.20 
+   3.00               831.00 
+   3.20               789.40 
+   3.40               747.80 
+   3.60               706.20 
+   3.80               664.60 
+   4.00               623.00 
+   4.20               598.20 
+   4.40               573.40 
+   4.60               548.60 
+   4.80               523.80 
+   5.00               499.00 
+   5.20               482.40 
+   5.40               465.80 
+   5.60               449.20 
+   5.80               432.60 
+   6.00               416.00 
+</pre><img vspace="5" hspace="5" src="Jason_Chiarulli_Ch_13_HW_01.png" alt=""> <h2 id="3">Problem 13.7</h2><pre class="codeinput"><span class="comment">% Defines a vector from measured volume data in m^3</span>
+V = 1:6;
+<span class="comment">% Defines a vector from measured pressure data in kPa at 300K</span>
+P = [2494 1247 831 623 499 416];
+<span class="comment">% Defines a vector with volume measurements every 0.2m^3</span>
+new_V = 1:0.2:6;
+
+<span class="comment">% Fits the data with the polyfit function for first-, second-,</span>
+<span class="comment">% third-, and fourth-order polynomials and polyval calculates</span>
+<span class="comment">% new pressure values</span>
+new_P1 = polyval(polyfit(V,P,1),new_V)
+new_P2 = polyval(polyfit(V,P,2),new_V);
+new_P3 = polyval(polyfit(V,P,3),new_V);
+new_P4 = polyval(polyfit(V,P,4),new_V);
+
+<span class="comment">% Plots the volume and pressure data as circles and plots the</span>
+<span class="comment">% new volume and new pressure data as solid lines</span>
+plot(V,P,<span class="string">'o'</span>,new_V,new_P1,new_V,new_P2,new_V,new_P3,new_V,new_P4)
+<span class="comment">% Creates a title</span>
+title({<span class="string">'Fit of Gas Volume and Pressure in a'</span>, <span class="string">'Piston-Cylinder Device'</span>})
+<span class="comment">% Creates a x-axis label</span>
+xlabel(<span class="string">'Volume, m^3'</span>)
+<span class="comment">% Creates a y-axis label</span>
+ylabel(<span class="string">'Pressure, kPa, at 300K'</span>)
+<span class="comment">% Creates a background grid</span>
+grid <span class="string">on</span>
+<span class="comment">% Creates a legend</span>
+legend(<span class="string">'Measured Data'</span>,<span class="string">'Linear Fit'</span>,<span class="string">'Quadratic Fit'</span>,<span class="string">'Cubic Fit'</span>, <span class="keyword">...</span>
+    <span class="string">'Quartic Fit'</span>)
+<span class="comment">% Displays text</span>
+disp(<span class="string">'The fourth-order model seems to do the best job since it follows the measured data points the best.'</span>)
+</pre><pre class="codeoutput">
+new_P1 =
+
+   1.0e+03 *
+
+  Columns 1 through 7
+
+    1.9356    1.8622    1.7889    1.7155    1.6421    1.5687    1.4953
+
+  Columns 8 through 14
+
+    1.4219    1.3486    1.2752    1.2018    1.1284    1.0550    0.9816
+
+  Columns 15 through 21
+
+    0.9083    0.8349    0.7615    0.6881    0.6147    0.5413    0.4680
+
+  Columns 22 through 26
+
+    0.3946    0.3212    0.2478    0.1744    0.1010
+
+The fourth-order model seems to do the best job since it follows the measured data points the best.
+</pre><img vspace="5" hspace="5" src="Jason_Chiarulli_Ch_13_HW_02.png" alt=""> <h2 id="4">Problem 13.13</h2><pre class="codeinput"><span class="comment">% a)</span>
+<span class="comment">% Defines a vector from -5 to +5</span>
+x = -5:5;
+<span class="comment">% Defines a function</span>
+y = 12*x.^3 - 5*x.^2 + 3;
+<span class="comment">% Approximates the derivative at each x value</span>
+dydx_approx = diff(y)./diff(x)
+
+<span class="comment">% b)</span>
+<span class="comment">% Analytically determines the derivative at each x value</span>
+dydx_analytical = 36*x.^2 - 10*x
+<span class="comment">% Displays text</span>
+disp(<span class="string">'The total number of results differ and the corresponding values of the results all differ'</span>)
+</pre><pre class="codeoutput">
+dydx_approx =
+
+   777   479   253    99    17     7    69   203   409   687
+
+
+dydx_analytical =
+
+   950   616   354   164    46     0    26   124   294   536   850
+
+The total number of results differ and the corresponding values of the results all differ
+</pre><h2 id="5">Problem 13.17</h2><pre class="codeinput"><span class="comment">% Computes the integral under a curve using adaptive Simpson quadrature</span>
+quad_solution = quad(<span class="string">'5*x.^3 - 2*x.^2 + 3'</span>,-1,1)
+<span class="comment">% Computes the integral under a curve using adaptive Lobatto quadrature</span>
+quadl_solution = quadl(<span class="string">'5*x.^3 - 2*x.^2 + 3'</span>,-1,1)
+
+<span class="comment">% Computes the integral by finding the symbolic integral</span>
+<span class="comment">% Note: Unable to use int since the DSP System Toolbox and Symbolic</span>
+<span class="comment">%       Toolbox are not installed on my version of MATLAB</span>
+<span class="comment">% Was able to confirm the code works by reviewing the practice exercises</span>
+<span class="comment">% int_solution = double(int('5*x^3 - 2*x^2 + 3',-1,1))</span>
+
+<span class="comment">% Defines a varible 'a'</span>
+a = -1;
+<span class="comment">% Defines a variable 'b'</span>
+b = 1;
+<span class="comment">% Calculates the integral by using the analytical method</span>
+analytical_solution = 5/4*(b^4-a^4) - 2/3*(b^3-a^3) + 3*(b-a)
+<span class="comment">% All methods of calculating the integral returned the same value</span>
+</pre><pre class="codeoutput">
+quad_solution =
+
+    4.6667
+
+
+quadl_solution =
+
+    4.6667
+
+
+analytical_solution =
+
+    4.6667
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Homework #7
+%
+% Jason Chiarulli
+%
+% ENGR 108
+%
+% Matlab for Engineers, Third Edition
+
+clear,clc
+
+%% Problem 13.2
+
+% Defines a vector from measured volume data in m^3 
+Volume = 1:6;
+% Defines a vector from measured pressure data in kPa at 300K
+Pressure = [2494 1247 831 623 499 416];
+% Defines a vector with volume measurements every 0.2m^3
+New_Volume = 1:0.2:6;
+% Estimates new pressure measurements for the new volume 
+% measurements with linear interpolation 
+New_Pressure = interp1(Volume,Pressure,New_Volume);
+% Groups the new pressure and new volume values into a table
+table =[New_Volume; New_Pressure];
+% Displays the title of the table
+disp('Expanded Volume-Pressure Table')
+% Displays the column headers of the table
+disp('Volume, m^3   Pressure, kPa, at 300K')
+% Displays and formats the new pressure and new volume values 
+fprintf('%7.2f %20.2f \n', table)
+
+% Plots the volume and pressure data as circles and plots the
+% new volume and new pressure data as a solid line
+plot(Volume,Pressure,'o',New_Volume,New_Pressure)
+% Creates a title
+title({'Gas Volume and Pressure in a', 'Piston-Cylinder Device'})
+% Creates a x-axis label
+xlabel('Volume, m^3')
+% Creates a y-axis label
+ylabel('Pressure, kPa, at 300K')
+% Creates a background grid
+grid on
+% Creates a legend
+legend('Measured Data','Interpolated Values')
+
+%% Problem 13.7
+
+% Defines a vector from measured volume data in m^3 
+V = 1:6;
+% Defines a vector from measured pressure data in kPa at 300K
+P = [2494 1247 831 623 499 416];
+% Defines a vector with volume measurements every 0.2m^3
+new_V = 1:0.2:6;
+
+% Fits the data with the polyfit function for first-, second-,
+% third-, and fourth-order polynomials and polyval calculates
+% new pressure values
+new_P1 = polyval(polyfit(V,P,1),new_V)
+new_P2 = polyval(polyfit(V,P,2),new_V);
+new_P3 = polyval(polyfit(V,P,3),new_V);
+new_P4 = polyval(polyfit(V,P,4),new_V);
+
+% Plots the volume and pressure data as circles and plots the
+% new volume and new pressure data as solid lines
+plot(V,P,'o',new_V,new_P1,new_V,new_P2,new_V,new_P3,new_V,new_P4)
+% Creates a title
+title({'Fit of Gas Volume and Pressure in a', 'Piston-Cylinder Device'})
+% Creates a x-axis label
+xlabel('Volume, m^3')
+% Creates a y-axis label
+ylabel('Pressure, kPa, at 300K')
+% Creates a background grid
+grid on
+% Creates a legend
+legend('Measured Data','Linear Fit','Quadratic Fit','Cubic Fit', ...
+    'Quartic Fit')
+% Displays text
+disp('The fourth-order model seems to do the best job since it follows the measured data points the best.')
+
+%% Problem 13.13
+
+% a)
+% Defines a vector from -5 to +5
+x = -5:5;
+% Defines a function
+y = 12*x.^3 - 5*x.^2 + 3;
+% Approximates the derivative at each x value
+dydx_approx = diff(y)./diff(x)
+
+% b)
+% Analytically determines the derivative at each x value
+dydx_analytical = 36*x.^2 - 10*x
+% Displays text
+disp('The total number of results differ and the corresponding values of the results all differ')
+
+%% Problem 13.17
+
+% Computes the integral under a curve using adaptive Simpson quadrature
+quad_solution = quad('5*x.^3 - 2*x.^2 + 3',-1,1)
+% Computes the integral under a curve using adaptive Lobatto quadrature
+quadl_solution = quadl('5*x.^3 - 2*x.^2 + 3',-1,1)
+
+% Computes the integral by finding the symbolic integral
+% Note: Unable to use int since the DSP System Toolbox and Symbolic
+%       Toolbox are not installed on my version of MATLAB
+% Was able to confirm the code works by reviewing the practice exercises
+% int_solution = double(int('5*x^3 - 2*x^2 + 3',-1,1))
+
+% Defines a varible 'a'
+a = -1;
+% Defines a variable 'b'
+b = 1;
+% Calculates the integral by using the analytical method
+analytical_solution = 5/4*(b^4-a^4) - 2/3*(b^3-a^3) + 3*(b-a)
+% All methods of calculating the integral returned the same value
+##### SOURCE END #####
+--></body></html>

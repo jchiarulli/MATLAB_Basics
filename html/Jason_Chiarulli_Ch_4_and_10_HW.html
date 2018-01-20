@@ -1,0 +1,717 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Homework #2</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-19"><meta name="DC.source" content="Jason_Chiarulli_Ch_4_and_10_HW.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Homework #2</h1><!--introduction--><p>Jason Chiarulli</p><p>ENGR 108</p><p>Matlab for Engineers, Third Edition</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Problem 4.1</a></li><li><a href="#2">Problem 4.4</a></li><li><a href="#3">Problem 4.8</a></li><li><a href="#4">Problem 4.10</a></li><li><a href="#5">Problem 10.7</a></li><li><a href="#6">Problem 10.18</a></li><li><a href="#7">Probelm 10.19</a></li></ul></div><h2 id="1">Problem 4.1</h2><pre class="codeinput">a = [15 3 22; 3 8 5; 14 3 82];
+b = [1; 5; 6];
+c = [12 18 5 2];
+
+<span class="comment">% a)</span>
+d = a(:, 3) <span class="comment">% Creates a matrix 'd' from matrix 'a' by</span>
+            <span class="comment">% by using the colon operator and the number 3</span>
+            <span class="comment">% to extract all the rows in column 3 of matrix</span>
+            <span class="comment">% 'a'</span>
+
+<span class="comment">% b)</span>
+e = [b, d] <span class="comment">% Creates a two-dimensional matrix 'e' by combining</span>
+           <span class="comment">% matrices 'b' and 'd'</span>
+
+<span class="comment">% c)</span>
+f = [b; d] <span class="comment">% Creates a one-dimensional matrix 'f' by combining</span>
+           <span class="comment">% matrices 'b' and 'd'</span>
+
+<span class="comment">% d)</span>
+g = [a; c(:, 1:3)] <span class="comment">% Creates a matrix 'g' from matrix 'a'</span>
+                   <span class="comment">% by using the colon operator to extract</span>
+                   <span class="comment">% all the rows in columns 1 to 3 of matrix 'c'</span>
+
+<span class="comment">% e)</span>
+h = [a(1,3) c(1,2) b(2,1)]
+<span class="comment">% Creates a matrix 'h' by extracting the following elements:</span>
+<span class="comment">% first row third column of matrix 'a', first row second column</span>
+<span class="comment">% of matrix 'c', and second row first column of matrix 'b'</span>
+</pre><pre class="codeoutput">
+d =
+
+    22
+     5
+    82
+
+
+e =
+
+     1    22
+     5     5
+     6    82
+
+
+f =
+
+     1
+     5
+     6
+    22
+     5
+    82
+
+
+g =
+
+    15     3    22
+     3     8     5
+    14     3    82
+    12    18     5
+
+
+h =
+
+    22    18     5
+
+</pre><h2 id="2">Problem 4.4</h2><pre class="codeinput"><span class="comment">% a)</span>
+<span class="comment">% Import and save the data file Sensor.dat to the current directory</span>
+load <span class="string">Sensor.dat</span>     <span class="comment">% Load the sensor data file</span>
+
+amount_of_time_data = size(Sensor,1)
+<span class="comment">% Determines the row size of the imported matrix 'Sensor' which is</span>
+<span class="comment">% equal to the amount of time data</span>
+
+amount_of_sensor_data = size(Sensor,1)*(size(Sensor,2) - 1)
+<span class="comment">% Determines the column size of the imported matrix 'Sensor' which is</span>
+<span class="comment">% subtracted by 1 since the first column is composed of time data</span>
+<span class="comment">% The new column size value is then multiplied by the row size of the</span>
+<span class="comment">% imported matrix which results in the amount of sensor data</span>
+
+<span class="comment">% b &amp; c)</span>
+column = 2; <span class="comment">% Creates and initializes an integer column</span>
+x = 1; <span class="comment">% Creates and initializes an integer x</span>
+<span class="keyword">while</span> column &lt;= size(Sensor,2)
+<span class="comment">% executes loop while the column is less than or equal to the column</span>
+<span class="comment">% size of the matrix 'Sensor'</span>
+
+   [max_value, row_max_occurred] = max(Sensor(:,column));
+   <span class="comment">% Finds the largest value and its location in each column</span>
+   <span class="comment">% containing sensor data in the matrix 'Sensor'</span>
+
+   time_max_occurred = Sensor(row_max_occurred);
+   <span class="comment">% Determines the time at which the max occurred by taking the</span>
+   <span class="comment">% location and passing it as an argument to the 'Sensor' matrix</span>
+
+   Max(x,:) = max_value;
+   <span class="comment">% Stores all of the max sensor data in a matrix</span>
+
+   Max_Time(x,:) = time_max_occurred;
+   <span class="comment">% Stores all of the max time data in a matrix</span>
+
+   [min_value, row_min_occurred] = min(Sensor(:,column));
+   <span class="comment">% Finds the smallest value and its location in each column</span>
+   <span class="comment">% containing sensor data in the matrix 'Sensor'</span>
+
+   time_min_occurred = Sensor(row_min_occurred);
+   <span class="comment">% Determines the time at which the min occurred by taking the</span>
+   <span class="comment">% location and passing it as an argument to the 'Sensor' matrix</span>
+
+   Min(x,:) = min_value;
+   <span class="comment">% Stores all of the min time data in a matrix</span>
+
+   Min_Time(x,:) = time_min_occurred;
+   <span class="comment">% Stores all of the min time data in a matrix</span>
+
+   Mean(x,:) = mean(Sensor(:,column));
+   <span class="comment">% Calculates the mean of each row containing sensor data and stores</span>
+   <span class="comment">% the mean data in matrix</span>
+
+   Std(x,:) = std(Sensor(:,column));
+   <span class="comment">% Calculates the standard deviation of each row containing sensor</span>
+   <span class="comment">% data and stores the standard deviation data in matrix</span>
+
+   column = column + 1;
+   <span class="comment">% Increments column by one each time the loop executes</span>
+
+   x = x + 1;
+   <span class="comment">% Increments x by one each time the loop executes</span>
+
+<span class="keyword">end</span> <span class="comment">% ends the loop</span>
+
+Mean_of_all_Sensor_Data = mean(Mean);
+<span class="comment">% Calculates the mean of all of the sensor data</span>
+
+Sensor_Data = Sensor(:,2:6);
+<span class="comment">% Creates a matrix by extracting the data from all the rows in columns</span>
+<span class="comment">% 2 to 6 of matrix 'Sensor'</span>
+
+Std_of_all_Sensor_Data = std(Sensor_Data(:));
+<span class="comment">% Calculates the standard deviation of all of the sensor data</span>
+
+Sensors = {<span class="string">'Sensor 1'</span>; <span class="string">'Sensor 2'</span>; <span class="string">'Sensor 3'</span>; <span class="string">'Sensor 4'</span>;
+           <span class="string">'Sensor 5'</span>};
+<span class="comment">% Creates labels for each row in the Analyzed_Sensor_Data_Table</span>
+
+Analyzed_Sensor_Data_Table = table(Max,Max_Time,Min,Min_Time,Mean,Std,<span class="keyword">...</span>
+    <span class="string">'RowNames'</span>,Sensors)
+<span class="comment">% Populates a table with the anaylzed sensor column data and</span>
+<span class="comment">% with rownames</span>
+
+Analyzed_Sensors_Data_Table = table(Mean_of_all_Sensor_Data,<span class="keyword">...</span>
+    Std_of_all_Sensor_Data)
+<span class="comment">% Populates a table with the anaylzed data for all of the sensor data</span>
+</pre><pre class="codeoutput">
+amount_of_time_data =
+
+    20
+
+
+amount_of_sensor_data =
+
+   100
+
+
+Analyzed_Sensor_Data_Table =
+
+  5&times;6 table
+
+                 Max      Max_Time     Min      Min_Time     Mean      Std  
+                ______    ________    ______    ________    ______    ______
+
+    Sensor 1    77.395    7.5         63.403      3         69.726    4.5471
+    Sensor 2    77.676    8.5         63.263    9.5         69.101    3.9223
+    Sensor 3    77.965    4.5         2.7644    2.5         65.374    15.357
+    Sensor 4    80.561    1.5         63.094      4          71.23     5.719
+    Sensor 5    76.183    4.5         58.374    5.5         68.265    5.2412
+
+
+Analyzed_Sensors_Data_Table =
+
+  1&times;2 table
+
+    Mean_of_all_Sensor_Data    Std_of_all_Sensor_Data
+    _______________________    ______________________
+
+    68.739                     8.2182                
+
+</pre><h2 id="3">Problem 4.8</h2><pre class="codeinput">T = 100:100:1000; <span class="comment">% Creates a temperature vector 'T' that starts at</span>
+                  <span class="comment">% 100K and ends at 1000K with spacing equal to 100</span>
+
+P = 100:100:1000; <span class="comment">% Creates a pressure vector 'P' that starts at</span>
+                  <span class="comment">% 1000kPa and ends at 1000kPa with spacing equal</span>
+                  <span class="comment">% to 100</span>
+
+R = 0.2870; <span class="comment">% Universal gas constant measured in kJ/(kgK)</span>
+
+[new_P, new_T] = meshgrid(P,T); <span class="comment">% Maps the vectors 'T' and 'P' into a</span>
+                                <span class="comment">% two-dimensional array</span>
+
+v = R.*new_T./new_P  <span class="comment">% Calculates the volume 'v' (m^3/kg) from the</span>
+                     <span class="comment">% ideal gas law by using array multiplication</span>
+                     <span class="comment">% and array division</span>
+</pre><pre class="codeoutput">
+v =
+
+  Columns 1 through 7
+
+    0.2870    0.1435    0.0957    0.0717    0.0574    0.0478    0.0410
+    0.5740    0.2870    0.1913    0.1435    0.1148    0.0957    0.0820
+    0.8610    0.4305    0.2870    0.2152    0.1722    0.1435    0.1230
+    1.1480    0.5740    0.3827    0.2870    0.2296    0.1913    0.1640
+    1.4350    0.7175    0.4783    0.3588    0.2870    0.2392    0.2050
+    1.7220    0.8610    0.5740    0.4305    0.3444    0.2870    0.2460
+    2.0090    1.0045    0.6697    0.5022    0.4018    0.3348    0.2870
+    2.2960    1.1480    0.7653    0.5740    0.4592    0.3827    0.3280
+    2.5830    1.2915    0.8610    0.6457    0.5166    0.4305    0.3690
+    2.8700    1.4350    0.9567    0.7175    0.5740    0.4783    0.4100
+
+  Columns 8 through 10
+
+    0.0359    0.0319    0.0287
+    0.0717    0.0638    0.0574
+    0.1076    0.0957    0.0861
+    0.1435    0.1276    0.1148
+    0.1794    0.1594    0.1435
+    0.2152    0.1913    0.1722
+    0.2511    0.2232    0.2009
+    0.2870    0.2551    0.2296
+    0.3229    0.2870    0.2583
+    0.3588    0.3189    0.2870
+
+</pre><h2 id="4">Problem 4.10</h2><pre class="codeinput">Magic_Matrix = magic(6) <span class="comment">% Creates a 6x6 'magic matrix'</span>
+
+<span class="comment">% a)</span>
+sum_of_the_rows = sum(Magic_Matrix') <span class="comment">% Calculates the sum of each row</span>
+                                     <span class="comment">% in the 'magic' matrix</span>
+
+<span class="comment">%b)</span>
+sum_of_the_columns = sum(Magic_Matrix) <span class="comment">% Calculates the sum of each</span>
+                                       <span class="comment">% column in the 'magic' matrix</span>
+
+<span class="comment">% c)</span>
+sum_of_the_diagonal = sum(diag(Magic_Matrix))
+<span class="comment">% Calculates the sum of the main diagonal of the 'magic' matrix</span>
+
+sum_of_the_diagonal_from_left_to_right = sum(diag(fliplr(Magic_Matrix)))
+<span class="comment">% Calculates the sum of the diagonal from the lower left to the upper</span>
+<span class="comment">% right of the 'magic' matrix</span>
+</pre><pre class="codeoutput">
+Magic_Matrix =
+
+    35     1     6    26    19    24
+     3    32     7    21    23    25
+    31     9     2    22    27    20
+     8    28    33    17    10    15
+    30     5    34    12    14    16
+     4    36    29    13    18    11
+
+
+sum_of_the_rows =
+
+   111   111   111   111   111   111
+
+
+sum_of_the_columns =
+
+   111   111   111   111   111   111
+
+
+sum_of_the_diagonal =
+
+   111
+
+
+sum_of_the_diagonal_from_left_to_right =
+
+   111
+
+</pre><h2 id="5">Problem 10.7</h2><pre class="codeinput"><span class="comment">% The products of A*B and B*A are not equal in either (a) or (b) since</span>
+<span class="comment">% matrix multiplication is not commutative</span>
+
+<span class="comment">% a)</span>
+A = [12 4; 3 -5];
+B = [2 12; 0 0];
+C = A*B
+D = B*A
+
+<span class="comment">% b)</span>
+A = [1 3 5; 2 4 6];
+B = [-2 4; 3 8; 12 -2];
+C = A*B
+D = B*A
+</pre><pre class="codeoutput">
+C =
+
+    24   144
+     6    36
+
+
+D =
+
+    60   -52
+     0     0
+
+
+C =
+
+    67    18
+    80    28
+
+
+D =
+
+     6    10    14
+    19    41    63
+     8    28    48
+
+</pre><h2 id="6">Problem 10.18</h2><pre class="codeinput"><span class="comment">% The systems of equations in (a), (b), and (c) were all solved using</span>
+<span class="comment">% both matrix left division e.g. X = A\B and the inverse matrix method</span>
+<span class="comment">% e.g. X = inv(A)*B</span>
+
+<span class="comment">% a)</span>
+A = [-2 1; 1 1];
+B = [3; 10];
+X1 = inv(A)*B
+X2 = A\B
+
+<span class="comment">% b)</span>
+A = [5 3 -1; 3 2 1; 4 -1 3];
+B = [10; 4; 12];
+X1 = inv(A)*B
+X2 = A\B
+
+<span class="comment">% c)</span>
+A = [3 1 1 1; 1 -3 7 1; 2 2 -3 4; 1 1 1 1];
+B = [24; 12; 17; 0];
+X1 = inv(A)*B
+X2 = A\B
+</pre><pre class="codeoutput">
+X1 =
+
+    2.3333
+    7.6667
+
+
+X2 =
+
+    2.3333
+    7.6667
+
+
+X1 =
+
+    3.1613
+   -2.2581
+   -0.9677
+
+
+X2 =
+
+    3.1613
+   -2.2581
+   -0.9677
+
+
+X1 =
+
+   12.0000
+   -8.2500
+   -3.5000
+   -0.2500
+
+
+X2 =
+
+   12.0000
+   -8.2500
+   -3.5000
+   -0.2500
+
+</pre><h2 id="7">Probelm 10.19</h2><pre class="codeinput"><span class="comment">% The following system of equations was solved with both matrix left</span>
+<span class="comment">% division e.g. X = A\B and the inverse matrix method e.g.</span>
+<span class="comment">% X = inv(A)*B.</span>
+<span class="comment">% The tic and toc functions were used to time the execution of each</span>
+<span class="comment">% technique. The tic and toc functions confirmed that the matrix left</span>
+<span class="comment">% division method was faster than the inverse matrix method.</span>
+
+A = [3 4 2 -1 1 7 1; 2 -2 3 -4 5 2 8;
+     1 2 3 1 2 4 6; 5 10 4 3 9 -2 1;
+     3 2 -2 -4 -5 -6 7; -2 9 1 3 -3 5 1;
+     1 -2 -8 4 2 4 5];
+B = [42; 32; 12; -5; 10; 18; 17];
+tic
+X1 = inv(A)*B
+toc
+tic
+X2 = A\B
+toc
+</pre><pre class="codeoutput">
+X1 =
+
+   -0.1890
+    2.5459
+   -3.2806
+   -6.7578
+    1.3212
+    4.3194
+    0.6294
+
+Elapsed time is 0.000184 seconds.
+
+X2 =
+
+   -0.1890
+    2.5459
+   -3.2806
+   -6.7578
+    1.3212
+    4.3194
+    0.6294
+
+Elapsed time is 0.000083 seconds.
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Homework #2
+% Jason Chiarulli
+%
+% ENGR 108
+%
+% Matlab for Engineers, Third Edition
+
+%% Problem 4.1
+a = [15 3 22; 3 8 5; 14 3 82];
+b = [1; 5; 6];
+c = [12 18 5 2];
+
+% a)
+d = a(:, 3) % Creates a matrix 'd' from matrix 'a' by 
+            % by using the colon operator and the number 3
+            % to extract all the rows in column 3 of matrix 
+            % 'a'
+            
+% b)
+e = [b, d] % Creates a two-dimensional matrix 'e' by combining
+           % matrices 'b' and 'd'
+           
+% c)
+f = [b; d] % Creates a one-dimensional matrix 'f' by combining
+           % matrices 'b' and 'd'
+           
+% d)
+g = [a; c(:, 1:3)] % Creates a matrix 'g' from matrix 'a'
+                   % by using the colon operator to extract 
+                   % all the rows in columns 1 to 3 of matrix 'c'
+
+% e)
+h = [a(1,3) c(1,2) b(2,1)] 
+% Creates a matrix 'h' by extracting the following elements: 
+% first row third column of matrix 'a', first row second column
+% of matrix 'c', and second row first column of matrix 'b'
+
+%% Problem 4.4
+
+% a)
+% Import and save the data file Sensor.dat to the current directory
+load Sensor.dat     % Load the sensor data file
+
+amount_of_time_data = size(Sensor,1) 
+% Determines the row size of the imported matrix 'Sensor' which is 
+% equal to the amount of time data                                        
+
+amount_of_sensor_data = size(Sensor,1)*(size(Sensor,2) - 1)
+% Determines the column size of the imported matrix 'Sensor' which is
+% subtracted by 1 since the first column is composed of time data
+% The new column size value is then multiplied by the row size of the
+% imported matrix which results in the amount of sensor data
+
+% b & c)
+column = 2; % Creates and initializes an integer column
+x = 1; % Creates and initializes an integer x
+while column <= size(Sensor,2) 
+% executes loop while the column is less than or equal to the column 
+% size of the matrix 'Sensor'
+
+   [max_value, row_max_occurred] = max(Sensor(:,column));
+   % Finds the largest value and its location in each column 
+   % containing sensor data in the matrix 'Sensor'
+   
+   time_max_occurred = Sensor(row_max_occurred);
+   % Determines the time at which the max occurred by taking the 
+   % location and passing it as an argument to the 'Sensor' matrix 
+   
+   Max(x,:) = max_value; 
+   % Stores all of the max sensor data in a matrix
+   
+   Max_Time(x,:) = time_max_occurred; 
+   % Stores all of the max time data in a matrix
+   
+   [min_value, row_min_occurred] = min(Sensor(:,column));
+   % Finds the smallest value and its location in each column 
+   % containing sensor data in the matrix 'Sensor'
+   
+   time_min_occurred = Sensor(row_min_occurred);
+   % Determines the time at which the min occurred by taking the 
+   % location and passing it as an argument to the 'Sensor' matrix 
+   
+   Min(x,:) = min_value;
+   % Stores all of the min time data in a matrix
+   
+   Min_Time(x,:) = time_min_occurred;
+   % Stores all of the min time data in a matrix
+   
+   Mean(x,:) = mean(Sensor(:,column));
+   % Calculates the mean of each row containing sensor data and stores 
+   % the mean data in matrix
+   
+   Std(x,:) = std(Sensor(:,column));
+   % Calculates the standard deviation of each row containing sensor 
+   % data and stores the standard deviation data in matrix
+   
+   column = column + 1; 
+   % Increments column by one each time the loop executes
+   
+   x = x + 1;
+   % Increments x by one each time the loop executes
+   
+end % ends the loop
+
+Mean_of_all_Sensor_Data = mean(Mean); 
+% Calculates the mean of all of the sensor data
+
+Sensor_Data = Sensor(:,2:6);
+% Creates a matrix by extracting the data from all the rows in columns 
+% 2 to 6 of matrix 'Sensor'
+
+Std_of_all_Sensor_Data = std(Sensor_Data(:));
+% Calculates the standard deviation of all of the sensor data
+
+Sensors = {'Sensor 1'; 'Sensor 2'; 'Sensor 3'; 'Sensor 4'; 
+           'Sensor 5'};
+% Creates labels for each row in the Analyzed_Sensor_Data_Table
+
+Analyzed_Sensor_Data_Table = table(Max,Max_Time,Min,Min_Time,Mean,Std,...
+    'RowNames',Sensors)
+% Populates a table with the anaylzed sensor column data and 
+% with rownames
+
+Analyzed_Sensors_Data_Table = table(Mean_of_all_Sensor_Data,... 
+    Std_of_all_Sensor_Data)
+% Populates a table with the anaylzed data for all of the sensor data  
+
+%% Problem 4.8
+T = 100:100:1000; % Creates a temperature vector 'T' that starts at
+                  % 100K and ends at 1000K with spacing equal to 100
+                  
+P = 100:100:1000; % Creates a pressure vector 'P' that starts at  
+                  % 1000kPa and ends at 1000kPa with spacing equal 
+                  % to 100
+                  
+R = 0.2870; % Universal gas constant measured in kJ/(kgK)
+
+[new_P, new_T] = meshgrid(P,T); % Maps the vectors 'T' and 'P' into a
+                                % two-dimensional array
+                                
+v = R.*new_T./new_P  % Calculates the volume 'v' (m^3/kg) from the 
+                     % ideal gas law by using array multiplication 
+                     % and array division 
+
+%% Problem 4.10
+Magic_Matrix = magic(6) % Creates a 6x6 'magic matrix'
+
+% a)
+sum_of_the_rows = sum(Magic_Matrix') % Calculates the sum of each row  
+                                     % in the 'magic' matrix
+
+%b)
+sum_of_the_columns = sum(Magic_Matrix) % Calculates the sum of each 
+                                       % column in the 'magic' matrix
+                                       
+% c)
+sum_of_the_diagonal = sum(diag(Magic_Matrix))
+% Calculates the sum of the main diagonal of the 'magic' matrix
+
+sum_of_the_diagonal_from_left_to_right = sum(diag(fliplr(Magic_Matrix)))
+% Calculates the sum of the diagonal from the lower left to the upper
+% right of the 'magic' matrix
+
+%% Problem 10.7
+
+% The products of A*B and B*A are not equal in either (a) or (b) since 
+% matrix multiplication is not commutative
+
+% a)
+A = [12 4; 3 -5];
+B = [2 12; 0 0];
+C = A*B 
+D = B*A
+
+% b)
+A = [1 3 5; 2 4 6];
+B = [-2 4; 3 8; 12 -2];
+C = A*B
+D = B*A
+
+%% Problem 10.18
+
+% The systems of equations in (a), (b), and (c) were all solved using
+% both matrix left division e.g. X = A\B and the inverse matrix method
+% e.g. X = inv(A)*B
+
+% a)
+A = [-2 1; 1 1];
+B = [3; 10];
+X1 = inv(A)*B 
+X2 = A\B
+
+% b)
+A = [5 3 -1; 3 2 1; 4 -1 3];
+B = [10; 4; 12];
+X1 = inv(A)*B
+X2 = A\B
+
+% c)
+A = [3 1 1 1; 1 -3 7 1; 2 2 -3 4; 1 1 1 1];
+B = [24; 12; 17; 0];
+X1 = inv(A)*B
+X2 = A\B
+
+%% Probelm 10.19
+
+% The following system of equations was solved with both matrix left
+% division e.g. X = A\B and the inverse matrix method e.g.
+% X = inv(A)*B. 
+% The tic and toc functions were used to time the execution of each 
+% technique. The tic and toc functions confirmed that the matrix left 
+% division method was faster than the inverse matrix method.
+
+A = [3 4 2 -1 1 7 1; 2 -2 3 -4 5 2 8;
+     1 2 3 1 2 4 6; 5 10 4 3 9 -2 1;
+     3 2 -2 -4 -5 -6 7; -2 9 1 3 -3 5 1;
+     1 -2 -8 4 2 4 5];
+B = [42; 32; 12; -5; 10; 18; 17];
+tic
+X1 = inv(A)*B
+toc
+tic
+X2 = A\B
+toc
+##### SOURCE END #####
+--></body></html>
